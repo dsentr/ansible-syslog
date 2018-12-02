@@ -1,0 +1,16 @@
+---
+- name: Install syslog-ng
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+    pkg: syslog-ng
+    state: present
+
+
+- name: Remove default syslog-ng config file
+  file:
+    path: /etc/syslog-ng/syslog-ng.conf
+    state: absent
+
+- name: Create new syslog-ng config file
+  copy: src=syslog-ng.conf path=/etc/syslog-ng

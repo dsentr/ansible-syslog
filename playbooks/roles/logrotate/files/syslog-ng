@@ -1,0 +1,104 @@
+/var/log/syslog
+{
+	rotate 7
+	daily
+	missingok
+	notifempty
+	delaycompress
+	compress
+	postrotate
+		invoke-rc.d syslog-ng reload > /dev/null
+	endscript
+}
+
+/var/log/mail.info
+/var/log/mail.warn
+/var/log/mail.err
+/var/log/mail.log
+/var/log/daemon.log
+/var/log/kern.log
+/var/log/auth.log
+/var/log/user.log
+/var/log/lpr.log
+/var/log/cron.log
+/var/log/debug
+/var/log/messages
+/var/log/error
+{
+	rotate 4
+	weekly
+	missingok
+	notifempty
+	compress
+	delaycompress
+	sharedscripts
+	postrotate
+		invoke-rc.d syslog-ng reload > /dev/null
+	endscript
+}
+/data1/var/log/headquarters/*.log {
+	# Keep 168 log files, remove ones older than that
+	# 7 days worth of logs kept since its rotated hourly
+	rotate 168
+	# This rotates every hour and has a cron job to do so
+	hourly
+	missingok
+	size=1M
+	# Add date to extension after rotated
+	dateext
+	# compress rotated log files
+	compress
+	# Don't compress the first rotated log file, but compress all older ones
+	delaycompress
+	# include year, month, day, and hour in date extension
+	dateformat -%Y-%m-%d-%H
+	sharedscripts
+	# Script to run after rotation (restart syslog-ng service to start a new log file)
+	postrotate
+		invoke-rc.d syslog-ng reload > /dev/null
+	endscript
+}
+/data1/var/log/branch1/*.log {
+	# Keep 168 log files, remove ones older than that
+	# 7 days worth of logs kept since its rotated hourly
+	rotate 168
+	# This rotates every hour and has a cron job to do so
+	hourly
+	missingok
+	size=1M
+	# Add date to extension after rotated
+	dateext
+	# compress rotated log files
+	compress
+	# Don't compress the first rotated log file, but compress all older ones
+	delaycompress
+	# include year, month, day, and hour in date extension
+	dateformat -%Y-%m-%d-%H
+	sharedscripts
+	# Script to run after rotation (restart syslog-ng service to start a new log file)
+	postrotate
+		invoke-rc.d syslog-ng reload > /dev/null
+	endscript
+}
+/data1/var/log/branch2/*.log {
+	# Keep 168 log files, remove ones older than that
+	# 7 days worth of logs kept since its rotated hourly
+	rotate 168
+	# This rotates every hour and has a cron job to do so
+	hourly
+	missingok
+	size=1M
+	# Add date to extension after rotated
+	dateext
+	# compress rotated log files
+	compress
+	# Don't compress the first rotated log file, but compress all older ones
+	delaycompress
+	# include year, month, day, and hour in date extension
+	dateformat -%Y-%m-%d-%H
+	sharedscripts
+	# Script to run after rotation (restart syslog-ng service to start a new log file)
+	postrotate
+		invoke-rc.d syslog-ng reload > /dev/null
+	endscript
+}

@@ -1,0 +1,6 @@
+- hosts: syslog
+  become: yes
+  roles:
+    - role: syslog-ng
+    - role: logrotate
+      tags: ['logrotate']
