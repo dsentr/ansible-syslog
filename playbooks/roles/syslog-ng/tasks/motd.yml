@@ -1,0 +1,9 @@
+---
+- name: Turn off default motd
+  file: path=/etc/update-motd.d mode="u-x,g-x,o-x" recurse=yes
+
+- name: Turn off landscape motd
+  file: path=/etc/update-motd.d/50-landscape-sysinfo state=absent
+
+- name: Create logging server motd
+  copy: src=motd dest=/etc/motd

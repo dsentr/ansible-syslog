@@ -1,0 +1,9 @@
+---
+- include: python.yml
+  tags: ["python"]
+
+- include: syslog-ng.yml
+  tags: ["syslog-ng"]
+
+- include: motd.yml
+  tags: ["motd"]

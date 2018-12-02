@@ -1,0 +1,11 @@
+---
+- name: Remove default syslog-ng logrotate config
+  file:
+    path: /etc/logrotate.d/syslog-ng
+    state: absent
+
+- name: copy new logrotate syslog-ng config file
+  copy: src=syslog-ng path=/etc/logrotate.d
+
+- name: Put logrotate bash script in hourly cron job
+  copy: src=logrotate path=/etc/cron.hourly
